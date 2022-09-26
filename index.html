@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <title>To Do List</title>
+    <link rel="shortcut icon" href="list-icon-1441.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+            font-family: Verdana;
+            text-transform: capitalize;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, rgb(255, 230, 0) 50%, #333 50%);
+        }
+
+        .container {
+            height: 450px;
+            width: 330px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #input {
+            height: 50px;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: #666;
+            color: #fff;
+            padding: 0 10px;
+            margin: 15px 0;
+        }
+
+        #input::placeholder {
+            color: #bbb;
+        }
+
+        ul li{
+            background: #eee;
+            color: #333;
+            height: 40px;
+            border-radius: 50px;
+            margin: 10px 0;
+            padding: 10px;
+            position: relative;
+        }
+
+        ul .fa-check, .fa-trash{
+            position: absolute;
+            cursor: pointer;
+        }
+
+        ul .fa-check{
+            right: 40px;
+            color: green;
+        }
+
+        ul .fa-trash{
+            right: 15px;
+            color: #ff0033;
+        }
+
+        ul .checked{
+            background: lightgreen;
+            text-decoration: line-through;
+            transition: .2s;
+        }
+
+    </style>
+    <script src="jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="input" placeholder="Press enter to add tasks">
+        <ul></ul>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#input').change(function () {
+                var input = $(this).val();
+                $('ul').append('<li>' + input + ' <i class="fas fa-check"></i>  <i class="fas fa-trash"></i> </li>');
+                $(this).val('');
+            }); 
+
+            $('ul').on('click','.fa-trash',function(){
+                $(this).parent('li').fadeOut(200);
+            });
+
+            $('ul').on('click','.fa-check',function(){
+                $(this).parent('li').toggleClass('checked');
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
